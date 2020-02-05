@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
     res.send('2019nCoV connection');
 });
 
-router.get('/insert', (req, res, next) => {
+router.post('/insert', (req, res, next) => {
     var record = new nCoV({
         pkid: common.Guid(),//GUID
         provinces: '甘肃',//req.body.provinces,//省份
