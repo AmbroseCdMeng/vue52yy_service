@@ -15,12 +15,12 @@ router.get('/', function (req, res, next) {
 router.post('/insert', (req, res, next) => {
     var record = new nCoV({
         pkid: common.Guid(),//GUID
-        provinces: '甘肃',//req.body.provinces,//省份
-        date: new Date(),//统计日期
-        confirmed_case: 0,//确诊
-        suspected_case: 0,//疑似
-        death_case: 0,//死亡
-        cured_case: 0,//治愈
+        provinces: req.body.provinces,//省份
+        date: req.body.date,//统计日期
+        confirmed_case: req.body.confirmed_case,//确诊
+        suspected_case: req.body.suspected_case,//疑似
+        death_case: req.body.death_case,//死亡
+        cured_case: req.body.cured_case,//治愈
 
         isValid: 1,//有效性。1：有效，0：无效
         creater: '52yy',
@@ -32,7 +32,7 @@ router.post('/insert', (req, res, next) => {
         if (err)
             res.json({status:1, message:err});
         else
-            res.json({status:0, message:'insert success'})
+            res.json({status: 0, message: `insert success ${record.date} ${record.provinces}`})
     });
 });
 
