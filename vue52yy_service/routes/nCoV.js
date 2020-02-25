@@ -9,10 +9,36 @@ var nCoV = require('../model/nCoV')
 var common = require('../common/common')
 
 router.get('/', function(req, res, next) {
-  //   res.send('2019nCoV connection')
-  nCoV.findAll((err, data) => {
-    res.json({ status: 0, message: 'Success', data: data })
+  nCoV.find((err, data) => {
+    res.json({
+      status: 0,
+      message: 'Success',
+      data: data
+    })
   })
+})
+
+router.get('/:provinces', function(req, res, next) {
+  /**
+   * req.params.xxxxx 从path中
+   * req.query.xxxxx 从get中
+   * req.body.xxxxx 从post中的变量
+   *
+   *  req.param("id")    通用
+   * * */
+  //   res.send('' + req.param('provinces'))
+  nCoV.find(
+    {
+      provinces: req.param('provinces')
+    },
+    (err, data) => {
+      res.json({
+        status: 0,
+        message: 'Success',
+        data: data
+      })
+    }
+  )
 })
 
 router.post('/insert', (req, res, next) => {

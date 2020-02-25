@@ -36,5 +36,9 @@ nCoV.statics.findAll = function(pkid, callBack) {
   this.find({ pkid: pkid }, callBack)
 }
 
+nCoV.statics.findByProvinces = function(provinces, callBack){
+    this.find({ provinces: provinces }, callBack)
+}
+
 var ncovModel = mongoose.model('ncov', nCoV)
 module.exports = ncovModel
